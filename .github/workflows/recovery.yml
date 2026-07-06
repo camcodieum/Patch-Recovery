@@ -32,12 +32,16 @@ jobs:
         wget ${{ github.event.inputs.RECOVERY_URL }} -O recovery.img
 
     - name: Patch Process-1
+      env:
+        ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
       run: |
         chmod a+x script1.sh
         chmod a+x magiskboot
         ./script1.sh recovery.img || true
 
     - name: Patch Process-2
+      env:
+        ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
       run: |
         chmod a+x script2.sh
         ./script2.sh || true
@@ -50,6 +54,8 @@ jobs:
         mv fastbootd-recovery.tar fastbootd-recovery.tar.md5
 
     - name: Upload to Release
+      env:
+        ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
       uses: softprops/action-gh-release@v2
       with:
         files: output/*.md5

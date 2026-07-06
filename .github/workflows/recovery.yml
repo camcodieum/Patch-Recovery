@@ -24,6 +24,8 @@ jobs:
         sudo apt install git wget lz4 tar openssl python3 -y
 
     - name: Fetch image from URL
+      env:
+        ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
       run: |
         ls
         pwd
